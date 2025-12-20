@@ -1,0 +1,163 @@
+[
+  {
+    "name": "Wedding",
+    "description": "Complete wedding celebration template",
+    "category": "Personal",
+    "defaultBudget": 15000.00,
+    "currencyCode": "USD",
+    "isPublic": true,
+    "defaultCategories": [
+      {
+        "categoryName": "Venue",
+        "estimatedAmount": 5000.00,
+        "description": "Wedding venue rental",
+        "sortOrder": 1
+      },
+      {
+        "categoryName": "Food & Catering",
+        "estimatedAmount": 4000.00,
+        "description": "Wedding reception catering",
+        "sortOrder": 2
+      },
+      {
+        "categoryName": "Photography",
+        "estimatedAmount": 2000.00,
+        "description": "Wedding photographer",
+        "sortOrder": 3
+      },
+      {
+        "categoryName": "Flowers & Decorations",
+        "estimatedAmount": 1500.00,
+        "description": "Wedding flowers and decorations",
+        "sortOrder": 4
+      },
+      {
+        "categoryName": "Music & Entertainment",
+        "estimatedAmount": 1000.00,
+        "description": "DJ or band for reception",
+        "sortOrder": 5
+      },
+      {
+        "categoryName": "Attire",
+        "estimatedAmount": 1500.00,
+        "description": "Wedding dress and suit",
+        "sortOrder": 6
+      },
+      {
+        "categoryName": "Transportation",
+        "estimatedAmount": 500.00,
+        "description": "Wedding car or limo",
+        "sortOrder": 7
+      }
+    ]
+  },
+  {
+    "name": "Birthday Party",
+    "description": "Birthday celebration template",
+    "category": "Personal",
+    "defaultBudget": 500.00,
+    "currencyCode": "USD",
+    "isPublic": true,
+    "defaultCategories": [
+      {
+        "categoryName": "Venue",
+        "estimatedAmount": 200.00,
+        "description": "Party venue or home decorations",
+        "sortOrder": 1
+      },
+      {
+        "categoryName": "Food & Drinks",
+        "estimatedAmount": 150.00,
+        "description": "Party food and beverages",
+        "sortOrder": 2
+      },
+      {
+        "categoryName": "Cake",
+        "estimatedAmount": 50.00,
+        "description": "Birthday cake",
+        "sortOrder": 3
+      },
+      {
+        "categoryName": "Entertainment",
+        "estimatedAmount": 100.00,
+        "description": "Party games or entertainment",
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "name": "Corporate Event",
+    "description": "Business conference or corporate event template",
+    "category": "Corporate",
+    "defaultBudget": 10000.00,
+    "currencyCode": "USD",
+    "isPublic": true,
+    "defaultCategories": [
+      {
+        "categoryName": "Venue Rental",
+        "estimatedAmount": 3000.00,
+        "description": "Conference center or hotel",
+        "sortOrder": 1
+      },
+      {
+        "categoryName": "Catering",
+        "estimatedAmount": 2500.00,
+        "description": "Meals and refreshments",
+        "sortOrder": 2
+      },
+      {
+        "categoryName": "Audio/Visual",
+        "estimatedAmount": 1500.00,
+        "description": "Sound system and projection equipment",
+        "sortOrder": 3
+      },
+      {
+        "categoryName": "Marketing Materials",
+        "estimatedAmount": 1000.00,
+        "description": "Banners, brochures, and promotional items",
+        "sortOrder": 4
+      },
+      {
+        "categoryName": "Speaker Fees",
+        "estimatedAmount": 2000.00,
+        "description": "Guest speakers and presenters",
+        "sortOrder": 5
+      }
+    ]
+  },
+  {
+    "name": "Graduation Party",
+    "description": "Graduation celebration template",
+    "category": "Personal",
+    "defaultBudget": 1000.00,
+    "currencyCode": "USD",
+    "isPublic": true,
+    "defaultCategories": [
+      {
+        "categoryName": "Venue",
+        "estimatedAmount": 300.00,
+        "description": "Party venue or home setup",
+        "sortOrder": 1
+      },
+      {
+        "categoryName": "Food & Drinks",
+        "estimatedAmount": 400.00,
+        "description": "Graduation party catering",
+        "sortOrder": 2
+      },
+      {
+        "categoryName": "Decorations",
+        "estimatedAmount": 150.00,
+        "description": "Graduation-themed decorations",
+        "sortOrder": 3
+      },
+      {
+        "categoryName": "Photography",
+        "estimatedAmount": 150.00,
+        "description": "Graduation photos",
+        "sortOrder": 4
+      }
+    ]
+  }
+]
+

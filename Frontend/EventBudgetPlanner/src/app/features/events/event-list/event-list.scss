@@ -1,0 +1,157 @@
+.event-list-container {
+  padding: 24px;
+  background: #fbfaff;
+  min-height: 100vh;
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    h2 {
+      margin: 0;
+      color: #1f2937;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+    }
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+  }
+
+  .filters {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      label {
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      input {
+        padding: 10px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .events {
+    .loading,
+    .empty {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      color: #6b7280;
+      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .event-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .event-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h4 {
+          margin: 0;
+        }
+
+        span {
+          font-size: 13px;
+          color: #9ca3af;
+        }
+      }
+
+      .description {
+        color: #4b5563;
+        min-height: 40px;
+      }
+
+      .info {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #f3f4f6;
+        padding-top: 12px;
+
+        label {
+          display: block;
+          font-size: 12px;
+          color: #9ca3af;
+        }
+
+        span {
+          font-weight: 600;
+          color: #111827;
+        }
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 8px;
+        
+      }
+    }
+  }
+
+  .btn {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &.primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    &.secondary {
+      background: #e5e7eb;
+      color: #1f2937;
+    }
+
+    &.small {
+      padding: 8px 12px;
+    }
+  }
+}
+
+.btn.danger {
+  background: #dc2626;
+  color: #fff;
+}

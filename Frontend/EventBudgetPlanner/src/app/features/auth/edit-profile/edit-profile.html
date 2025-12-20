@@ -1,0 +1,66 @@
+<div class="edit-profile-container">
+  <div class="edit-profile-card">
+    <h2>Edit Profile</h2>
+
+    <div class="loading" *ngIf="loadingUser">
+      Loading user information...
+    </div>
+
+    <div class="success-message" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
+
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="!loadingUser">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input
+          type="text"
+          id="fullName"
+          formControlName="fullName"
+          class="form-control"
+          [class.error]="editForm.get('fullName')?.invalid && editForm.get('fullName')?.touched"
+        />
+        <div class="error-message" *ngIf="editForm.get('fullName')?.invalid && editForm.get('fullName')?.touched">
+          <span *ngIf="editForm.get('fullName')?.errors?.['minlength']">Full name must be at least 2 characters</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          [class.error]="editForm.get('email')?.invalid && editForm.get('email')?.touched"
+        />
+        <div class="error-message" *ngIf="editForm.get('email')?.invalid && editForm.get('email')?.touched">
+          <span *ngIf="editForm.get('email')?.errors?.['email']">Invalid email format</span>
+        </div>
+        <small class="form-text">Note: Changing email will require you to use the new email for login.</small>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="isLoading || editForm.invalid || !hasChanges()"
+        >
+          {{ isLoading ? 'Updating...' : 'Update Profile' }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          routerLink="/auth/profile"
+          [disabled]="isLoading"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

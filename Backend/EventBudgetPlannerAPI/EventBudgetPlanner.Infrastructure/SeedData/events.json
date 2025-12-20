@@ -1,0 +1,93 @@
+[
+  {
+    "name": "Summer Wedding 2025",
+    "date": "2025-06-15T14:00:00",
+    "budget": 15000.00,
+    "description": "Outdoor wedding ceremony and reception at the garden venue",
+    "currencyCode": "USD",
+    "eventTemplateId": 1,
+    "isTemplate": false
+  },
+  {
+    "name": "Corporate Annual Meeting",
+    "date": "2025-09-20T09:00:00",
+    "budget": 8000.00,
+    "description": "Company-wide annual meeting with keynote speakers",
+    "currencyCode": "USD",
+    "eventTemplateId": 3,
+    "isTemplate": false
+  },
+  {
+    "name": "Birthday Party - 30th Celebration",
+    "date": "2025-12-05T19:00:00",
+    "budget": 3000.00,
+    "description": "Milestone birthday celebration with close friends and family",
+    "currencyCode": "USD",
+    "eventTemplateId": 2,
+    "isTemplate": false
+  },
+  {
+    "name": "Tech Conference 2025",
+    "date": "2025-11-10T08:00:00",
+    "budget": 25000.00,
+    "description": "Annual technology conference with workshops and networking",
+    "currencyCode": "USD",
+    "eventTemplateId": 3,
+    "isTemplate": false
+  },
+  {
+    "name": "Charity Fundraiser Gala",
+    "date": "2025-10-18T18:00:00",
+    "budget": 12000.00,
+    "description": "Elegant gala dinner to raise funds for local community projects",
+    "currencyCode": "USD",
+    "eventTemplateId": null,
+    "isTemplate": false
+  },
+  {
+    "name": "Template: Small Wedding (50 guests)",
+    "date": "2026-01-01T14:00:00",
+    "budget": 10000.00,
+    "description": "Template for a small intimate wedding with 50 guests. Includes venue, catering, photography, and decorations.",
+    "currencyCode": "USD",
+    "eventTemplateId": 1,
+    "isTemplate": true
+  },
+  {
+    "name": "Template: Corporate Team Building",
+    "date": "2026-01-01T09:00:00",
+    "budget": 5000.00,
+    "description": "Template for corporate team building event. Includes venue, activities, catering, and materials.",
+    "currencyCode": "USD",
+    "eventTemplateId": 3,
+    "isTemplate": true
+  },
+  {
+    "name": "Template: Birthday Party (Kids)",
+    "date": "2026-01-01T15:00:00",
+    "budget": 500.00,
+    "description": "Template for children's birthday party. Includes venue, cake, decorations, party favors, and entertainment.",
+    "currencyCode": "USD",
+    "eventTemplateId": 2,
+    "isTemplate": true
+  },
+  {
+    "name": "Template: Product Launch Event",
+    "date": "2026-01-01T18:00:00",
+    "budget": 15000.00,
+    "description": "Template for product launch event. Includes venue, AV equipment, catering, marketing materials, and PR.",
+    "currencyCode": "USD",
+    "eventTemplateId": 3,
+    "isTemplate": true
+  },
+  {
+    "name": "Template: Anniversary Celebration",
+    "date": "2026-01-01T19:00:00",
+    "budget": 3000.00,
+    "description": "Template for anniversary celebration. Includes restaurant, flowers, cake, and entertainment.",
+    "currencyCode": "USD",
+    "eventTemplateId": 2,
+    "isTemplate": true
+  }
+]
+

@@ -1,0 +1,66 @@
+<div class="event-list-container">
+  <div class="toolbar">
+    <h2>Events</h2>
+    <div class="actions">
+      <button class="btn secondary" routerLink="/events/templates/list">Template Events</button>
+      <button class="btn primary" (click)="openCreate()">Create Event</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <aside class="filters">
+      <h3>Filters</h3>
+      <form [formGroup]="filterForm" (ngSubmit)="loadEvents()">
+        <label>Search</label>
+        <input type="text" formControlName="searchTerm" placeholder="Name or description" />
+
+        <label>Start Date</label>
+        <input type="date" formControlName="startDate" />
+
+        <label>End Date</label>
+        <input type="date" formControlName="endDate" />
+
+        <label>Min Budget</label>
+        <input type="number" formControlName="minBudget" />
+
+        <label>Max Budget</label>
+        <input type="number" formControlName="maxBudget" />
+
+        <button class="btn primary" type="submit">Apply</button>
+        <button class="btn secondary" type="button" (click)="resetFilters()">Reset</button>
+      </form>
+    </aside>
+
+    <section class="events">
+      <div class="loading" *ngIf="isLoading">Loading events...</div>
+      <div class="events-grid" *ngIf="!isLoading && events.length">
+        <div class="event-card" *ngFor="let event of events">
+          <div class="event-header">
+            <h4>{{ event.name }}</h4>
+            <span>{{ event.date | date: 'mediumDate' }}</span>
+          </div>
+          <p class="description">{{ event.description || 'No description provided.' }}</p>
+          <div class="info">
+            <div>
+              <label>Budget</label>
+              <span>{{ event.budget | currency }}</span>
+            </div>
+            <div>
+              <label>Created</label>
+              <span>{{ event.createdDate | date: 'short' }}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button class="btn small" (click)="openDetail(event.id)">View</button>
+            <button class="btn small" (click)="editEvent(event.id)">Edit</button>
+            <button class="btn small danger" (click)="deleteEvent(event.id)">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty" *ngIf="!isLoading && !events.length">
+        No events found. Try adjusting your filters or create a new event.
+      </div>
+    </section>
+  </div>
+</div>

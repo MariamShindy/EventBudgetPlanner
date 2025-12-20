@@ -1,0 +1,31 @@
+<div class="template-container">
+  <div class="header">
+    <div>
+      <h2>Template Events</h2>
+      <p>Use a template to jump-start your planning.</p>
+    </div>
+    <button class="btn secondary" routerLink="/events">Back to Events</button>
+  </div>
+
+  <div class="loading" *ngIf="isLoading">Loading templates...</div>
+
+  <div class="template-grid" *ngIf="!isLoading">
+    <div class="template-card" *ngFor="let template of templates">
+      <h3>{{ template.name }}</h3>
+      <p>{{ template.description }}</p>
+      <div class="meta">
+        <div>
+          <label>Budget</label>
+          <span>{{ template.budget | currency }}</span>
+        </div>
+        <div>
+          <label>Date</label>
+          <span>{{ template.date | date: 'mediumDate' }}</span>
+        </div>
+      </div>
+      <button class="btn primary" (click)="useTemplate(template)">
+        Use this template
+      </button>
+    </div>
+  </div>
+</div>

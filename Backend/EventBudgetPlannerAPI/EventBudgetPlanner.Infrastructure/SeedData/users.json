@@ -1,0 +1,21 @@
+[
+  {
+    "fullName": "Admin User",
+    "email": "admin@eventbudget.com",
+    "password": "Admin@123456",
+    "isActive": true
+  },
+  {
+    "fullName": "Amir Ayman",
+    "email": "AmirAyman@example.com",
+    "password": "User@123456",
+    "isActive": true
+  },
+  {
+    "fullName": "Sarah Omar",
+    "email": "sarah@gmail.com",
+    "password": "User@123456",
+    "isActive": true
+  }
+]
+

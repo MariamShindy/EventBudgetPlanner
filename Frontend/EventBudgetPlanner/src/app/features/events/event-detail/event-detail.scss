@@ -1,0 +1,265 @@
+.event-detail-container {
+  padding: 32px;
+  background: #f9fafb;
+  min-height: 100vh;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h2 {
+      margin: 0 0 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+  }
+
+  .info-grid,
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+
+    label {
+      font-size: 12px;
+      color: #9ca3af;
+      text-transform: uppercase;
+    }
+
+    span {
+      display: block;
+      font-weight: 600;
+      color: #111827;
+    }
+  }
+
+  .categories {
+    margin-top: 16px;
+
+    .category {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+  }
+
+  .cashflow {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .point {
+      background: #f3f4f6;
+      border-radius: 12px;
+      padding: 12px 16px;
+    }
+  }
+
+  .btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &.primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    &.secondary {
+      background: #e5e7eb;
+      color: #1f2937;
+    }
+  }
+}
+
+.loading {
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6b7280;
+  font-size: 18px;
+}
+.btn.danger {
+  background: #dc2626;
+  color: #fff;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.expense-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+
+  select,
+  input[type="text"] {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+.expenses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+
+  .expense-info {
+    flex: 1;
+
+    .expense-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+
+      h4 {
+        margin: 0;
+        color: #111827;
+        font-size: 16px;
+      }
+
+      .expense-amount {
+        font-weight: 600;
+        color: #2563eb;
+        font-size: 18px;
+      }
+    }
+
+    .expense-details {
+      p {
+        margin: 4px 0;
+        color: #6b7280;
+        font-size: 14px;
+      }
+
+      small {
+        color: #9ca3af;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .expense-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    .paid-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+
+      input[type="checkbox"] {
+        width: auto;
+      }
+
+      span {
+        font-size: 14px;
+        color: #6b7280;
+      }
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+
+  p {
+    margin: 0;
+  }
+}
+
+.reminder-form {
+  margin-top: 16px;
+
+  .form-group {
+    margin-bottom: 16px;
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    input[type="email"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+
+      &:focus {
+        outline: none;
+        border-color: #2563eb;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  }
+
+  button[type="submit"] {
+    margin-top: 8px;
+  }
+}
+
+.success-message {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #a7f3d0;
+}

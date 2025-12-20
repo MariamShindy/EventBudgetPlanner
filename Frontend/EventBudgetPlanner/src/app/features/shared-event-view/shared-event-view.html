@@ -1,0 +1,47 @@
+<div class="shared-event-container">
+  <div class="shared-event-card" *ngIf="!isLoading && event; else loadingOrError">
+    <header>
+      <h1>{{ event.name }}</h1>
+      <p class="date">{{ event.date | date: 'fullDate' }}</p>
+    </header>
+
+    <div class="event-info">
+      <div class="info-card">
+        <label>Budget</label>
+        <span class="value">{{ event.budget | currency }}</span>
+      </div>
+      <div class="info-card">
+        <label>Total Spent</label>
+        <span class="value">{{ event.totalSpent | currency }}</span>
+      </div>
+      <div class="info-card">
+        <label>Remaining</label>
+        <span class="value">{{ (event.budget - event.totalSpent) | currency }}</span>
+      </div>
+      <div class="info-card">
+        <label>Expenses</label>
+        <span class="value">{{ event.expenseCount }}</span>
+      </div>
+    </div>
+
+    <div class="description" *ngIf="event.description">
+      <h3>Description</h3>
+      <p>{{ event.description }}</p>
+    </div>
+
+    <div class="actions">
+      <a routerLink="/auth/login" class="btn primary">Login to View Full Details</a>
+    </div>
+  </div>
+
+  <ng-template #loadingOrError>
+    <div class="loading-error">
+      <div *ngIf="isLoading" class="loading">Loading event...</div>
+      <div *ngIf="!isLoading && errorMessage" class="error">
+        <h2>Event Not Found</h2>
+        <p>{{ errorMessage }}</p>
+        <a routerLink="/" class="btn secondary">Go Home</a>
+      </div>
+    </div>
+  </ng-template>
+</div>

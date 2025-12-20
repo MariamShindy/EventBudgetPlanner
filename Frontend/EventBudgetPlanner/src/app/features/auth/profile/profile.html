@@ -1,0 +1,37 @@
+<div class="profile-container">
+  <div class="profile-card">
+    <h2>My Profile</h2>
+
+    <div class="loading" *ngIf="isLoading">
+      Loading user information...
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage && !isLoading">
+      {{ errorMessage }}
+    </div>
+
+    <div class="user-info" *ngIf="userInfo && !isLoading">
+      <div class="info-item">
+        <label>User ID:</label>
+        <span>{{ userInfo.userId }}</span>
+      </div>
+      <div class="info-item">
+        <label>Full Name:</label>
+        <span>{{ userInfo.fullName }}</span>
+      </div>
+      <div class="info-item">
+        <label>Email:</label>
+        <span>{{ userInfo.email }}</span>
+      </div>
+    </div>
+
+    <div class="actions" *ngIf="userInfo && !isLoading">
+      <button routerLink="/auth/edit-profile" class="btn btn-primary">
+        Edit Profile
+      </button>
+      <button routerLink="/events" class="btn btn-secondary">
+        Back to Events
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+[
+  {
+    "code": "USD",
+    "name": "US Dollar",
+    "symbol": "$",
+    "exchangeRate": 1.0,
+    "isBaseCurrency": true,
+    "isActive": true
+  },
+  {
+    "code": "EUR",
+    "name": "Euro",
+    "symbol": "€",
+    "exchangeRate": 0.85,
+    "isBaseCurrency": false,
+    "isActive": true
+  },
+  {
+    "code": "GBP",
+    "name": "British Pound",
+    "symbol": "£",
+    "exchangeRate": 0.73,
+    "isBaseCurrency": false,
+    "isActive": true
+  },
+  {
+    "code": "JPY",
+    "name": "Japanese Yen",
+    "symbol": "¥",
+    "exchangeRate": 110.0,
+    "isBaseCurrency": false,
+    "isActive": true
+  },
+  {
+    "code": "CAD",
+    "name": "Canadian Dollar",
+    "symbol": "C$",
+    "exchangeRate": 1.25,
+    "isBaseCurrency": false,
+    "isActive": true
+  },
+  {
+    "code": "AUD",
+    "name": "Australian Dollar",
+    "symbol": "A$",
+    "exchangeRate": 1.35,
+    "isBaseCurrency": false,
+    "isActive": true
+  }
+]
+

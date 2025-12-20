@@ -1,0 +1,106 @@
+.edit-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.edit-profile-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #555;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 15px;
+
+      &:focus {
+        outline: none;
+        border-color: #ff9a8b;
+      }
+
+      &.error {
+        border-color: #e74c3c;
+      }
+    }
+
+    .form-text {
+      font-size: 13px;
+      color: #888;
+      margin-top: 6px;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+  }
+
+  .form-actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 12px;
+
+    .btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+
+      &.btn-primary {
+        background: #ff9a8b;
+        color: white;
+      }
+
+      &.btn-secondary {
+        background: #f0f0f0;
+        color: #555;
+      }
+    }
+  }
+
+  .success-message,
+  .error-message {
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+
+  .success-message {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  .error-message {
+    background: #f8d7da;
+    color: #721c24;
+  }
+}
