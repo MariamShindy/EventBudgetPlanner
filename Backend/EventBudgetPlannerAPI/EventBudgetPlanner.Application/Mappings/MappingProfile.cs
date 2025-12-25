@@ -1,4 +1,5 @@
 using EventBudgetPlanner.Application.DTOs.Event;
+using EventBudgetPlanner.Application.DTOs.Expense;
 
 namespace EventBudgetPlanner.Application.Mappings
 {

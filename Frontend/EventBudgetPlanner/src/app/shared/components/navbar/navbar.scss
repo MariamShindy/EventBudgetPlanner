@@ -1,7 +1,7 @@
 .navbar {
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  // position: sticky;
   top: 0;
   z-index: 1000;
 
@@ -23,7 +23,7 @@
       text-decoration: none;
       color: #667eea;
       font-weight: 700;
-      font-size: 25px;
+      font-size: 30px;
 
       .logo-text {
         &:hover {

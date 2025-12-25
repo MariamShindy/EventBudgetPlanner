@@ -1,4 +1,5 @@
 using EventBudgetPlanner.API.Extensions;
+using EventBudgetPlanner.Application.DTOs.Expense;
 
 namespace EventBudgetPlanner.API.Controllers
 {

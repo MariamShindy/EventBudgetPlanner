@@ -1,4 +1,4 @@
-<div class="event-list-container">
+<!-- <div class="event-list-container">
   <div class="toolbar">
     <h2>Events</h2>
     <div class="actions">
@@ -52,7 +52,7 @@
           </div>
           <div class="card-actions">
             <button class="btn small" (click)="openDetail(event.id)">View</button>
-            <button class="btn small" (click)="editEvent(event.id)">Edit</button>
+            <button class="btn small edit" (click)="editEvent(event.id)">Edit</button>
             <button class="btn small danger" (click)="deleteEvent(event.id)">Delete</button>
           </div>
         </div>
@@ -60,6 +60,142 @@
 
       <div class="empty" *ngIf="!isLoading && !events.length">
         No events found. Try adjusting your filters or create a new event.
+      </div>
+    </section>
+  </div>
+</div> -->
+
+<div class="event-list-container">
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <h2>Events</h2>
+    </div>
+    <div class="actions">
+      <button class="btn secondary" routerLink="/events/templates/list">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Templates
+      </button>
+      <button class="btn primary" (click)="openCreate()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Create Event
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+    <aside class="filters">
+      <div class="filters-header">
+        <h3>Filters</h3>
+        <button class="btn-icon" type="button" (click)="resetFilters()" title="Clear all filters">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <form [formGroup]="filterForm" (ngSubmit)="loadEvents()">
+        <div class="form-group">
+          <label>Search</label>
+          <div class="input-with-icon">
+            <svg class="input-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M11 11l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <input type="text" formControlName="searchTerm" placeholder="Search events..." />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Date Range</label>
+          <input type="date" formControlName="startDate" placeholder="Start date" />
+          <input type="date" formControlName="endDate" placeholder="End date" />
+        </div>
+
+        <div class="form-group">
+          <label>Budget Range</label>
+          <div class="budget-inputs">
+            <input type="number" formControlName="minBudget" placeholder="Min" />
+            <span class="separator">–</span>
+            <input type="number" formControlName="maxBudget" placeholder="Max" />
+          </div>
+        </div>
+
+        <button class="btn primary full-width" type="submit">
+          Apply Filters
+        </button>
+      </form>
+    </aside>
+
+    <section class="events">
+      <div class="loading" *ngIf="isLoading">
+        <div class="spinner"></div>
+        <p>Loading events...</p>
+      </div>
+      
+      <div class="events-grid" *ngIf="!isLoading && events.length">
+        <div class="event-card" *ngFor="let event of events">
+          <div class="event-card-inner">
+            <div class="event-header">
+              <h4>{{ event.name }}</h4>
+              <div class="event-date">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M2 6h12M5 2v2M11 2v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>{{ event.date | date: 'MMM d, y' }}</span>
+              </div>
+            </div>
+            
+            <p class="description">{{ event.description || 'No description provided.' }}</p>
+            
+            <div class="info">
+              <div class="info-item">
+                <label>Budget</label>
+                <span class="budget-amount">{{ event.budget | currency }}</span>
+              </div>
+              <div class="info-item">
+                <label>Created</label>
+                <span>{{ event.createdDate | date: 'MMM d' }}</span>
+              </div>
+            </div>
+            
+            <div class="card-actions">
+              <button class="btn-action view" (click)="openDetail(event.id)">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 3C4.5 3 1.7 5.6 1 8c.7 2.4 3.5 5 7 5s6.3-2.6 7-5c-.7-2.4-3.5-5-7-5z" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                View
+              </button>
+              <button class="btn-action edit" (click)="editEvent(event.id)">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.3 2.3l2.4 2.4L6 12.4 2 13l.6-4 7.7-7.7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Edit
+              </button>
+              <button class="btn-action delete" (click)="deleteEvent(event.id)">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 4h10M6 4V3h4v1M6 7v5M10 7v5M4 4h8l-.5 9H4.5L4 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty" *ngIf="!isLoading && !events.length">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="16" width="40" height="36" rx="4" stroke="#D1D5DB" stroke-width="2"/>
+          <path d="M12 24h40M20 12v8M44 12v8" stroke="#D1D5DB" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="32" cy="36" r="6" stroke="#D1D5DB" stroke-width="2"/>
+        </svg>
+        <h3>No events found</h3>
+        <p>Try adjusting your filters or create a new event to get started.</p>
       </div>
     </section>
   </div>

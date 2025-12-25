@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { EventService } from '../../../core/services/event.service';
@@ -17,6 +17,7 @@ export class EventFormComponent implements OnInit {
   private eventService = inject(EventService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private location = inject(Location);
 
   form: FormGroup;
   isEditMode = false;
@@ -36,10 +37,32 @@ export class EventFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Check for template data from navigation state (works during navigation)
     const navigation = this.router.getCurrentNavigation();
-    const templateData = navigation?.extras?.state?.['template'];
+    let templateData = navigation?.extras?.state?.['template'];
+    
+    // If not found in navigation, check history state using Location service
+    if (!templateData) {
+      const state = this.location.getState() as any;
+      if (state && state.template) {
+        templateData = state.template;
+      }
+    }
+    
+    // If still not found, check window history as fallback
+    if (!templateData && (window.history.state && window.history.state.template)) {
+      templateData = window.history.state.template;
+    }
+    
     if (templateData) {
-      this.form.patchValue(templateData);
+      this.form.patchValue({
+        name: templateData.name || '',
+        date: templateData.date || '',
+        budget: templateData.budget || 0,
+        description: templateData.description || '',
+        currencyCode: templateData.currencyCode || 'USD',
+        eventTemplateId: templateData.eventTemplateId || null
+      });
     }
 
     this.route.paramMap.subscribe(params => {

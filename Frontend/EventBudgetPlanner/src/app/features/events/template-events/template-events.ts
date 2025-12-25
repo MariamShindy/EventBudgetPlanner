@@ -28,14 +28,18 @@ export class TemplateEventsComponent implements OnInit {
     });
   }
 
-  useTemplate(template: Event): void {
+  useTemplate(template: Event, clickEvent?: MouseEvent): void {
+    if (clickEvent) {
+      clickEvent.stopPropagation();
+    }
     this.router.navigate(['/events/create'], {
       state: {
         template: {
           name: template.name,
           date: template.date.split('T')[0],
           budget: template.budget,
-          description: template.description
+          description: template.description || '',
+          currencyCode: 'USD'
         }
       }
     });
