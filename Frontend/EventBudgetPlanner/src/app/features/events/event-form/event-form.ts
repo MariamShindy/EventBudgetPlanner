@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { EventService } from '../../../core/services/event.service';
@@ -17,7 +17,6 @@ export class EventFormComponent implements OnInit {
   private eventService = inject(EventService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
-  private location = inject(Location);
 
   form: FormGroup;
   isEditMode = false;
@@ -37,23 +36,33 @@ export class EventFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Check for template data from navigation state (works during navigation)
-    const navigation = this.router.getCurrentNavigation();
-    let templateData = navigation?.extras?.state?.['template'];
+    // Check for template data from multiple sources
+    let templateData: any = null;
     
-    // If not found in navigation, check history state using Location service
+    // First try getCurrentNavigation (works during navigation)
+    const navigation = this.router.getCurrentNavigation();
+    templateData = navigation?.extras?.state?.['template'];
+    
+    // If not available, try browser history state
+    if (!templateData && window.history.state) {
+      templateData = window.history.state['template'];
+    }
+    
+    // If still not available, try sessionStorage as fallback
     if (!templateData) {
-      const state = this.location.getState() as any;
-      if (state && state.template) {
-        templateData = state.template;
+      const storedData = sessionStorage.getItem('templateData');
+      if (storedData) {
+        try {
+          templateData = JSON.parse(storedData);
+          // Clear it after use
+          sessionStorage.removeItem('templateData');
+        } catch (e) {
+          console.error('Failed to parse template data from sessionStorage:', e);
+        }
       }
     }
     
-    // If still not found, check window history as fallback
-    if (!templateData && (window.history.state && window.history.state.template)) {
-      templateData = window.history.state.template;
-    }
-    
+    // If template data exists, populate the form
     if (templateData) {
       this.form.patchValue({
         name: templateData.name || '',

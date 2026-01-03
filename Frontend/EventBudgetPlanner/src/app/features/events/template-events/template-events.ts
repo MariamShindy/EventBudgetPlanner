@@ -28,19 +28,21 @@ export class TemplateEventsComponent implements OnInit {
     });
   }
 
-  useTemplate(template: Event, clickEvent?: MouseEvent): void {
-    if (clickEvent) {
-      clickEvent.stopPropagation();
-    }
+  useTemplate(template: Event): void {
+    const templateData = {
+      name: template.name,
+      date: template.date.split('T')[0],
+      budget: template.budget,
+      description: template.description || '',
+      eventTemplateId: template.id || null
+    };
+    
+    // Store in sessionStorage as backup
+    sessionStorage.setItem('templateData', JSON.stringify(templateData));
+    
     this.router.navigate(['/events/create'], {
       state: {
-        template: {
-          name: template.name,
-          date: template.date.split('T')[0],
-          budget: template.budget,
-          description: template.description || '',
-          currencyCode: 'USD'
-        }
+        template: templateData
       }
     });
   }

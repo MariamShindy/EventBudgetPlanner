@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, switchMap, of, catchError } from 'rxjs';
 import { API_ENDPOINTS } from '../constants/api.constants';
 import {
   LoginRequest,
@@ -50,7 +50,24 @@ export class AuthService {
   updateUser(request: UpdateUserRequest): Observable<UserInfo> {
     return this.http.put<UserInfo>(API_ENDPOINTS.AUTH.UPDATE_USER, request)
       .pipe(
-        tap(user => this.updateUserData(user))
+        tap(user => this.updateUserData(user)),
+        // After updating, fetch fresh data from API to ensure we have the latest from database
+        switchMap((updatedUser) => {
+          // Fetch fresh user data from API and update localStorage
+          return this.getCurrentUserFromApi().pipe(
+            tap(() => {
+              // Dispatch event to notify all components after fetching fresh data
+              window.dispatchEvent(new CustomEvent('authStateChanged'));
+            }),
+            // Return the fresh user data
+            catchError((error) => {
+              console.error('Failed to fetch updated user data:', error);
+              // If fetching fresh data fails, still dispatch event and return the updated user from the PUT response
+              window.dispatchEvent(new CustomEvent('authStateChanged'));
+              return of(updatedUser);
+            })
+          );
+        })
       );
   }
 
@@ -119,6 +136,8 @@ getCurrentUserValue(): UserInfo | null {
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.USER_KEY);
+    // Dispatch custom event to notify components about auth state change
+    window.dispatchEvent(new CustomEvent('authStateChanged'));
   }
 
   getUserData(): AuthResponse | null {
@@ -129,6 +148,8 @@ getCurrentUserValue(): UserInfo | null {
   private saveAuthData(response: AuthResponse): void {
     localStorage.setItem(this.TOKEN_KEY, response.token);
     localStorage.setItem(this.USER_KEY, JSON.stringify(response));
+    // Dispatch custom event to notify components about auth state change
+    window.dispatchEvent(new CustomEvent('authStateChanged'));
   }
 
   private updateUserData(user: UserInfo): void {
@@ -140,6 +161,8 @@ getCurrentUserValue(): UserInfo | null {
         email: user.email
       };
       localStorage.setItem(this.USER_KEY, JSON.stringify(updatedData));
+      // Dispatch custom event to notify components about user data update
+      window.dispatchEvent(new CustomEvent('authStateChanged'));
     }
   }
 }
