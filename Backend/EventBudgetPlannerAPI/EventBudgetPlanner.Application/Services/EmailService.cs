@@ -1,6 +1,4 @@
-using EventBudgetPlanner.Application.Common;
 using EventBudgetPlanner.Application.DTOs.Event;
-using EventBudgetPlanner.Application.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Net;
@@ -25,9 +23,7 @@ namespace EventBudgetPlanner.Application.Services
             _logger = logger;
         }
 
-        /// <summary>
-        /// Sends a reminder email for an event.
-        /// </summary>
+        // Sends a reminder email for an event.
         public async Task<Result> SendReminderEmailAsync(CreateReminderDto reminderDto)
         {
             return await SendEventReminderAsync(
@@ -38,9 +34,7 @@ namespace EventBudgetPlanner.Application.Services
             );
         }
 
-        /// <summary>
-        /// Sends an event reminder email.
-        /// </summary>
+        // Sends an event reminder email.
         public async Task<Result> SendEventReminderAsync(int eventId, string email, int daysBeforeEvent, string? customMessage = null)
         {
             try
@@ -51,7 +45,7 @@ namespace EventBudgetPlanner.Application.Services
 
                 // Calculate reminder date (for informational purposes)
                 var reminderDate = eventEntity.Date.AddDays(-daysBeforeEvent);
-                
+
                 // Warn if event date is in the past (reminder might not be useful)
                 if (eventEntity.Date < DateTime.Now)
                 {
@@ -82,9 +76,7 @@ namespace EventBudgetPlanner.Application.Services
                 }
 
                 if (string.IsNullOrEmpty(fromEmail))
-                {
-                    fromEmail = smtpUser; // Use SMTP user as from email if not specified
-                }
+                    fromEmail = smtpUser;
 
                 using var client = new SmtpClient(smtpHost, smtpPort)
                 {

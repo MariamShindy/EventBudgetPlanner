@@ -3,11 +3,11 @@ using EventBudgetPlanner.Application.DTOs.Event;
 
 namespace EventBudgetPlanner.API.Controllers
 {
-    /// <summary>Reminders controller for email reminders (requires authentication)</summary>
+    //Reminders controller for email reminders
     [Authorize]
     public class RemindersController(IEmailService _emailService) : ApiController
     {
-        /// <summary>Sends an email reminder for an event</summary>
+        //Sends an email reminder for an event
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

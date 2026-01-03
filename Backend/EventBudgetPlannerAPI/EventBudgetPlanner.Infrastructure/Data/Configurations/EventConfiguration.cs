@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EventBudgetPlanner.Infrastructure.Data.Configurations
 {
-    /// <summary>Entity configuration for Event entity</summary>
+    // Entity configuration for Event entity
     public class EventConfiguration : IEntityTypeConfiguration<Event>
     {
         public void Configure(EntityTypeBuilder<Event> builder)

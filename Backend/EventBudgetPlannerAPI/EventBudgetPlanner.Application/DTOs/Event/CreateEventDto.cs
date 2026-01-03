@@ -1,6 +1,6 @@
 namespace EventBudgetPlanner.Application.DTOs
 {
-    /// <summary>DTO for creating a new event</summary>
+    //DTO for creating a new event
     public record CreateEventDto(
         string Name, 
         DateTime Date, 

@@ -36,8 +36,3 @@ export interface UserInfo {
     email: string;
     fullName: string;
 }
-export interface TokenData{
-    token : string;
-    expiresAt : string;
-    userId : string;
-}

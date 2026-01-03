@@ -12,9 +12,7 @@ namespace EventBudgetPlanner.Application.Services
     /// </summary>
     public class EventService(IUnitOfWork _unitOfWork, IMapper _mapper, IConfiguration _configuration) : IEventService
     { 
-        /// <summary>
-        /// Retrieves all events from the database.
-        /// </summary>
+        // Retrieves all events from the database.
         public async Task<Result<IEnumerable<EventDto>>> GetAllEventsAsync()
         {
             var events = await _unitOfWork.Events.GetAllAsync();
@@ -23,10 +21,8 @@ namespace EventBudgetPlanner.Application.Services
         }
 
 
-        /// <summary>
-        /// Retrieves a specific event by ID.
-        /// Returns NotFound result if event doesn't exist.
-        /// </summary>
+        // Retrieves a specific event by ID.
+        // Returns NotFound result if event doesn't exist.
         public async Task<Result<EventDto>> GetEventByIdAsync(int id)
         {
             var eventEntity = await _unitOfWork.Events.GetByIdAsync(id);
@@ -37,10 +33,8 @@ namespace EventBudgetPlanner.Application.Services
             return Result<EventDto>.Success(eventDto);
         }
 
-        /// <summary>
-        /// Creates a new event in the database.
-        /// Returns 201 Created status on success.
-        /// </summary>
+        // Creates a new event in the database.
+        // Returns 201 Created status on success.
         public async Task<Result<EventDto>> CreateEventAsync(CreateEventDto createEventDto)
         {
             var eventEntity = _mapper.Map<Event>(createEventDto);
@@ -50,11 +44,9 @@ namespace EventBudgetPlanner.Application.Services
             return Result<EventDto>.Success(eventDto, 201);
         }
 
-        /// <summary>
-        /// Updates an existing event.
-        /// Returns NotFound result if event doesn't exist.
-        /// Returns NoContent (204) on success.
-        /// </summary>
+        // Updates an existing event.
+        // Returns NotFound result if event doesn't exist.
+        // Returns NoContent (204) on success.
         public async Task<Result> UpdateEventAsync(int id, UpdateEventDto updateEventDto)
         {
             var existingEvent = await _unitOfWork.Events.GetByIdAsync(id);
@@ -67,11 +59,9 @@ namespace EventBudgetPlanner.Application.Services
             return Result.Success(204);
         }
 
-        /// <summary>
-        /// Deletes an event and all its associated expenses.
-        /// Returns NotFound result if event doesn't exist.
-        /// Returns NoContent (204) on success.
-        /// </summary>
+        // Deletes an event and all its associated expenses.
+        // Returns NotFound result if event doesn't exist.
+        // Returns NoContent (204) on success.
         public async Task<Result> DeleteEventAsync(int id)
         {
             var eventEntity = await _unitOfWork.Events.GetByIdAsync(id);
@@ -84,11 +74,9 @@ namespace EventBudgetPlanner.Application.Services
             return Result.Success(204);
         }
 
-        /// <summary>
-        /// Generates comprehensive summary information for an event.
-        /// Includes budget tracking and expense analysis.
-        /// Returns NotFound result if event doesn't exist.
-        /// </summary>
+        // Generates comprehensive summary information for an event.
+        // Includes budget tracking and expense analysis.
+        // Returns NotFound result if event doesn't exist.
         public async Task<Result<EventSummaryDto>> GetEventSummaryAsync(int id)
         {
             var eventEntity = await _unitOfWork.Events.GetByIdAsync(id);
@@ -100,9 +88,7 @@ namespace EventBudgetPlanner.Application.Services
             return Result<EventSummaryDto>.Success(summary);
         }
 
-        /// <summary>
-        /// Returns cashflow timeseries for an event at the specified interval (week or month).
-        /// </summary>
+        // Returns cashflow timeseries for an event at the specified interval (week or month).
         public async Task<Result<CashflowResponseDto>> GetCashflowAsync(int id, string interval)
         {
             var eventExists = await _unitOfWork.Events.AnyAsync(e => e.Id == id);
@@ -142,10 +128,8 @@ namespace EventBudgetPlanner.Application.Services
             return Result<CashflowResponseDto>.Success(new CashflowResponseDto(id, normalized, points));
         }
 
-        /// <summary>
-        /// Allocates an event's total budget into category planned amounts using the chosen strategy.
-        /// Persists allocations in EventCategoryBudgets (upsert).
-        /// </summary>
+        // Allocates an event's total budget into category planned amounts using the chosen strategy.
+        // Persists allocations in EventCategoryBudgets (upsert).
         public async Task<Result<AllocationResponseDto>> AllocateBudgetAsync(int id, AllocateBudgetRequestDto request)
         {
             if (request.TotalBudget <= 0)
@@ -234,10 +218,8 @@ namespace EventBudgetPlanner.Application.Services
             return Result<AllocationResponseDto>.Success(new AllocationResponseDto(id, request.TotalBudget, strategy, perCategory));
         }
 
-        /// <summary>
-        /// Generates a shareable link for an event.
-        /// Creates a unique token if one doesn't exist.
-        /// </summary>
+        // Generates a shareable link for an event.
+        // Creates a unique token if one doesn't exist.
         public async Task<Result<ShareEventDto>> GenerateShareLinkAsync(int id)
         {
             var eventEntity = await _unitOfWork.Events.GetByIdAsync(id);
@@ -257,9 +239,7 @@ namespace EventBudgetPlanner.Application.Services
             return Result<ShareEventDto>.Success(new ShareEventDto(shareUrl, eventEntity.ShareToken));
         }
 
-        /// <summary>
-        /// Retrieves a shared event by its share token (public endpoint, no auth required).
-        /// </summary>
+        // Retrieves a shared event by its share token 
         public async Task<Result<SharedEventViewDto>> GetSharedEventAsync(string shareToken)
         {
             var eventEntity = (await _unitOfWork.Events.FindAsync(e => e.ShareToken == shareToken)).FirstOrDefault();
@@ -283,9 +263,7 @@ namespace EventBudgetPlanner.Application.Services
             return Result<SharedEventViewDto>.Success(sharedView);
         }
 
-        /// <summary>
-        /// Retrieves all template events that users can copy.
-        /// </summary>
+        // Retrieves all template events that users can copy.
         public async Task<Result<IEnumerable<EventDto>>> GetTemplateEventsAsync()
         {
             var templateEvents = await _unitOfWork.Events.FindAsync(e => e.IsTemplate);
@@ -295,21 +273,14 @@ namespace EventBudgetPlanner.Application.Services
 
         #region Private Helper Methods
 
-        /// <summary>
-        /// Maps update DTO values to the existing event entity.
-        /// </summary>
-        /// <param name="existingEvent">The event entity to update</param>
-        /// <param name="updateDto">The DTO containing updated values</param>
+        // Maps update DTO values to the existing event entity.
         private void MapUpdatesToEvent(Event existingEvent, UpdateEventDto updateDto)
         {
             _mapper.Map(updateDto, existingEvent);
             existingEvent.ModifiedDate = DateTime.Now;
         }
 
-        /// <summary>
-        /// Deletes all expenses associated with an event.
-        /// </summary>
-        /// <param name="eventId">The event identifier</param>
+        // Deletes all expenses associated with an event.
         private async Task DeleteAssociatedExpensesAsync(int eventId)
         {
             var expenses = await _unitOfWork.Expenses.FindAsync(e => e.EventId == eventId);
@@ -317,12 +288,7 @@ namespace EventBudgetPlanner.Application.Services
                 await _unitOfWork.Expenses.DeleteAsync(expense);
         }
 
-        /// <summary>
-        /// Builds a comprehensive event summary from event and expense data.
-        /// </summary>
-        /// <param name="eventEntity">The event entity</param>
-        /// <param name="expenses">List of expenses for the event</param>
-        /// <returns>Event summary DTO with calculated metrics</returns>
+        // Builds a comprehensive event summary from event and expense data
         private EventSummaryDto BuildEventSummary(Event eventEntity, List<Expense> expenses)
         {
             var totalSpent = CalculateTotalSpent(expenses);
@@ -347,20 +313,20 @@ namespace EventBudgetPlanner.Application.Services
                 OverBudgetAmount: overBudgetAmount);
         }
 
-        /// <summary>Calculates the total amount spent across all expenses.</summary>
+        // Calculates the total amount spent across all expenses
         private static decimal CalculateTotalSpent(List<Expense> expenses) => expenses.Sum(e => e.Amount);
 
-        /// <summary>Calculates the remaining budget.</summary>
+        // Calculates the remaining budget
         private static decimal CalculateRemainingBudget(decimal budget, decimal totalSpent) => budget - totalSpent;
 
-        /// <summary>Calculates the percentage of budget that has been spent.</summary>
+        // Calculates the percentage of budget that has been spent
         private static decimal CalculatePercentageSpent(decimal budget, decimal totalSpent) => budget > 0 ? (totalSpent / budget) * 100 : 0;
 
-        /// <summary>Groups expenses by category and calculates totals for each.</summary>
+        // Groups expenses by category and calculates totals for each
         private static Dictionary<string, decimal> GroupExpensesByCategory(List<Expense> expenses) =>
             expenses.GroupBy(e => e.Category).ToDictionary(g => g.Key, g => g.Sum(e => e.Amount));
 
-        /// <summary>Counts paid and unpaid expenses.</summary>
+        // Counts paid and unpaid expenses
         private static (int paidCount, int unpaidCount) CountPaidAndUnpaidExpenses(List<Expense> expenses)
         {
             var paidCount = expenses.Count(e => e.IsPaid);
@@ -368,7 +334,7 @@ namespace EventBudgetPlanner.Application.Services
             return (paidCount, unpaidCount);
         }
 
-        /// <summary>Determines if the budget is exceeded and by how much.</summary>
+        // Determines if the budget is exceeded and by how much
         private static (bool isOverBudget, decimal overBudgetAmount) CalculateOverBudgetStatus(decimal budget, decimal totalSpent)
         {
             var isOverBudget = totalSpent > budget;
@@ -376,7 +342,7 @@ namespace EventBudgetPlanner.Application.Services
             return (isOverBudget, overBudgetAmount);
         }
 
-        /// <summary>Gets the start of the week (Monday) for a given date.</summary>
+        // Gets the start of the week (Monday) for a given date
         private static DateTime StartOfWeek(DateTime date)
         {
             var diff = (7 + (date.DayOfWeek - DayOfWeek.Monday)) % 7;

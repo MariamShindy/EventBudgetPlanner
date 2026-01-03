@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 
 namespace EventBudgetPlanner.Infrastructure.Repositories
 {
-    /// <summary>Generic repository implementation using Entity Framework Core</summary>
+    // Generic repository implementation using Entity Framework Core
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         protected readonly ApplicationDbContext _context;

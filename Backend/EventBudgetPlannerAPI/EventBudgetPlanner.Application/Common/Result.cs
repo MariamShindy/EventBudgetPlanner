@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace EventBudgetPlanner.Application.Common
 {
-    /// <summary>Result wrapper for operation outcomes with success/failure handling</summary>
+    //Result wrapper for operation outcomes with success/failure handling
     public class Result<T>
     {
         public bool IsSuccess { get; }

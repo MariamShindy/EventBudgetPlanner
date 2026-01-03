@@ -3,11 +3,11 @@ using EventBudgetPlanner.Application.DTOs.Expense;
 
 namespace EventBudgetPlanner.API.Controllers
 {
-    /// <summary>Expenses controller providing CRUD operations and filtering (requires authentication)</summary>
+    //Expenses controller providing CRUD operations and filtering
     [Authorize]
     public class ExpensesController(IExpenseService _expenseService) : ApiController
     {
-        /// <summary>Retrieves all expenses for a specific event with optional filters</summary>
+        //Retrieves all expenses for a specific event with optional filters
         [HttpGet("event/{eventId:int}")]
         [ProducesResponseType(typeof(IEnumerable<ExpenseDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -15,14 +15,14 @@ namespace EventBudgetPlanner.API.Controllers
             (await _expenseService.GetExpensesByEventIdAsync(eventId, paid, category)).ToActionResult();
 
 
-        /// <summary>Retrieves a specific expense by ID</summary>
+        //Retrieves a specific expense by ID
         [HttpGet("{id:int}")]
         [ProducesResponseType(typeof(ExpenseDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ExpenseDto>> GetExpenseById(int id) =>
             (await _expenseService.GetExpenseByIdAsync(id)).ToActionResult();
 
-        /// <summary>Retrieves expenses with advanced filtering</summary>
+        //Retrieves expenses with advanced filtering
         [HttpPost("filter")]
         [ProducesResponseType(typeof(IEnumerable<ExpenseDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -63,21 +63,21 @@ namespace EventBudgetPlanner.API.Controllers
             return Ok(pagedExpenses);
         }
 
-        /// <summary>Creates a new expense</summary>
+        //Creates a new expense
         [HttpPost]
         [ProducesResponseType(typeof(ExpenseDto), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ExpenseDto>> CreateExpense([FromBody] CreateExpenseDto createExpenseDto) =>
             (await _expenseService.CreateExpenseAsync(createExpenseDto)).ToActionResult();
 
-        /// <summary>Updates an existing expense</summary>
+        //Updates an existing expense
         [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateExpense(int id, [FromBody] UpdateExpenseDto updateExpenseDto) =>
             (await _expenseService.UpdateExpenseAsync(id, updateExpenseDto)).ToActionResult();
 
-        /// <summary>Deletes an expense</summary>
+        //Deletes an expense
         [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

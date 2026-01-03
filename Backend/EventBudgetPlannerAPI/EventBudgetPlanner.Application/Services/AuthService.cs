@@ -20,10 +20,8 @@ namespace EventBudgetPlanner.Application.Services
         ILogger<AuthService> _logger) : IAuthService
     {
 
-        /// <summary>
-        /// Registers a new user account and generates a JWT token.
-        /// Returns Failure result if user already exists or creation fails.
-        /// </summary>
+        // Registers a new user account and generates a JWT token.
+        // Returns Failure result if user already exists or creation fails.
         public async Task<Result<AuthResponseDto>> RegisterAsync(RegisterDto registerDto)
         {
             if (await UserExistsAsync(registerDto.Email))
@@ -39,10 +37,8 @@ namespace EventBudgetPlanner.Application.Services
             return Result<AuthResponseDto>.Success(authResponse);
         }
 
-        /// <summary>
-        /// Authenticates user credentials and generates a JWT token if valid.
-        /// Returns Unauthorized (401) result if credentials are invalid.
-        /// </summary>
+        // Authenticates user credentials and generates a JWT token if valid.
+        // Returns Unauthorized (401) result if credentials are invalid.
         public async Task<Result<AuthResponseDto>> LoginAsync(LoginDto loginDto)
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
@@ -57,18 +53,14 @@ namespace EventBudgetPlanner.Application.Services
             return Result<AuthResponseDto>.Success(authResponse);
         }
 
-        /// <summary>
-        /// Gets current user information from claims.
-        /// </summary>
+        // Gets current user information from claims.
         public Task<Result<object>> GetCurrentUserAsync(string userId, string email, string fullName)
         {
             var userInfo = new { UserId = userId, Email = email, FullName = fullName };
             return Task.FromResult(Result<object>.Success(userInfo));
         }
 
-        /// <summary>
-        /// Initiates password reset process by generating a token and sending reset email.
-        /// </summary>
+        // Initiates password reset process by generating a token and sending reset email.
         public async Task<Result> ForgotPasswordAsync(ForgotPasswordDto forgotPasswordDto)
         {
             var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
@@ -96,9 +88,7 @@ namespace EventBudgetPlanner.Application.Services
             }
         }
 
-        /// <summary>
-        /// Resets user password using the provided token.
-        /// </summary>
+        // Resets user password using the provided token.
         public async Task<Result> ResetPasswordAsync(ResetPasswordDto resetPasswordDto)
         {
             var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
@@ -118,9 +108,7 @@ namespace EventBudgetPlanner.Application.Services
             return Result.Success();
         }
 
-        /// <summary>
-        /// Updates user information (FullName and/or Email).
-        /// </summary>
+        // Updates user information (FullName and/or Email).
         public async Task<Result<object>> UpdateUserAsync(string userId, UpdateUserDto updateUserDto)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -168,7 +156,7 @@ namespace EventBudgetPlanner.Application.Services
 
         #region Private Helper Methods
 
-        /// <summary>Sends password reset email to user.</summary>
+        //Sends password reset email to user
         private async Task SendPasswordResetEmailAsync(string email, string fullName, string resetUrl)
         {
             var subject = "Password Reset Request - Event Budget Planner";
@@ -242,10 +230,10 @@ namespace EventBudgetPlanner.Application.Services
             await client.SendMailAsync(message);
         }
 
-        /// <summary>Checks if a user with the specified email already exists.</summary>
+        //Checks if a user with the specified email already exists
         private async Task<bool> UserExistsAsync(string email) => await _userManager.FindByEmailAsync(email) != null;
 
-        /// <summary>Creates a new ApplicationUser instance from registration data.</summary>
+        //Creates a new ApplicationUser instance from registration data
         private static ApplicationUser CreateNewUser(RegisterDto registerDto) =>
             new()
             {
@@ -255,14 +243,14 @@ namespace EventBudgetPlanner.Application.Services
                 EmailConfirmed = true
             };
 
-        /// <summary>Validates user password using SignInManager.</summary>
+        //Validates user password using SignInManager
         private async Task<bool> ValidatePasswordAsync(ApplicationUser user, string password)
         {
             var result = await _signInManager.CheckPasswordSignInAsync(user, password, false);
             return result.Succeeded;
         }
 
-        /// <summary>Generates JWT token and creates authentication response for a user.</summary>
+        //Generates JWT token and creates authentication response for a user
         private async Task<AuthResponseDto> GenerateAuthResponseAsync(ApplicationUser user)
         {
             var claims = await BuildUserClaimsAsync(user);
@@ -279,7 +267,7 @@ namespace EventBudgetPlanner.Application.Services
                 ExpiresAt: expiresAt);
         }
 
-        /// <summary>Builds claims list for a user including roles.</summary>
+        //Builds claims list for a user including roles
         private async Task<List<Claim>> BuildUserClaimsAsync(ApplicationUser user)
         {
             var roles = await _userManager.GetRolesAsync(user);
@@ -297,7 +285,7 @@ namespace EventBudgetPlanner.Application.Services
             return claims;
         }
 
-        /// <summary>Gets all JWT configuration settings.</summary>
+        //Gets all JWT configuration settings
         private (string secret, string issuer, string audience, int expiryMinutes) GetJwtSettings()
         {
             var secret = GetJwtSetting("Secret");
@@ -307,11 +295,11 @@ namespace EventBudgetPlanner.Application.Services
             return (secret, issuer, audience, expiryMinutes);
         }
 
-        /// <summary>Gets a specific JWT configuration setting with validation.</summary>
+        //Gets a specific JWT configuration setting with validation
         private string GetJwtSetting(string key) =>
             _configuration[$"JWT:{key}"] ?? throw new InvalidOperationException($"JWT {key} is not configured");
 
-        /// <summary>Creates a JWT security token with the specified claims and settings.</summary>
+        //Creates a JWT security token with the specified claims and settings
         private static JwtSecurityToken CreateJwtToken(List<Claim> claims, string secretKey, string issuer, string audience, DateTime expiresAt)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));

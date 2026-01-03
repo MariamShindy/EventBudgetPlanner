@@ -13,7 +13,7 @@ using System.Text;
 
 namespace EventBudgetPlanner.API.Extensions.DependencyInjection
 {
-    /// <summary>Extension methods for service registration and dependency injection configuration</summary>
+    //Extension methods for service registration and dependency injection configuration
     public static class ServicesExtensions 
     {
         public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)

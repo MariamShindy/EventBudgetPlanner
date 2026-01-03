@@ -2,7 +2,7 @@ using EventBudgetPlanner.Domain.Common;
 
 namespace EventBudgetPlanner.Domain.Entities
 {
-    /// <summary>Expense entity representing a cost item linked to an event</summary>
+    // Expense entity representing a cost item linked to an event
     public class Expense : BaseEntity
     {
         public int EventId { get; set; }
@@ -10,8 +10,8 @@ namespace EventBudgetPlanner.Domain.Entities
         public string? Description { get; set; }
         public decimal Amount { get; set; }
         public string CurrencyCode { get; set; } = "USD";
-        public decimal? ExchangeRate { get; set; } // Exchange rate at time of expense
-        public decimal BaseAmount { get; set; } // Amount in base currency
+        public decimal? ExchangeRate { get; set; } 
+        public decimal BaseAmount { get; set; }
         public bool IsPaid { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
         public string? Vendor { get; set; }

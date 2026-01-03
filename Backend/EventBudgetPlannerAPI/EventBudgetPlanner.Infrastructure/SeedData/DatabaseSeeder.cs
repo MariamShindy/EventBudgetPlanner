@@ -39,10 +39,8 @@ namespace EventBudgetPlanner.Infrastructure.SeedData
             }
         }
 
-        /// <summary>
-        /// Seeds the database with initial data if not already seeded.
-        /// Checks if data exists before seeding to prevent duplicates.
-        /// </summary>
+        // Seeds the database with initial data if not already seeded.
+        // Checks if data exists before seeding to prevent duplicates.
         public async Task SeedAsync()
         {
             _logger.LogInformation("Starting database seeding...");
@@ -60,7 +58,7 @@ namespace EventBudgetPlanner.Infrastructure.SeedData
             _logger.LogInformation("Database seeding completed successfully.");
         }
 
-        /// <summary>Clears existing data to ensure clean seeding.</summary>
+        // Clears existing data to ensure clean seeding
         private async Task ClearExistingDataAsync()
         {
             _logger.LogInformation("Clearing existing data...");
@@ -83,7 +81,7 @@ namespace EventBudgetPlanner.Infrastructure.SeedData
             _logger.LogInformation("Existing data cleared.");
         }
 
-        /// <summary>Seeds users from users.json file.</summary>
+        // Seeds users from users.json file
         private async Task SeedUsersAsync()
         {
             var jsonPath = Path.Combine(_seedDataPath, "users.json");
@@ -127,8 +125,7 @@ namespace EventBudgetPlanner.Infrastructure.SeedData
             }
         }
 
-        /// <summary>Seeds events from events.json file.</summary>
-
+        // Seeds events from events.json file
         private async Task SeedEventsAsync()
         {
             var jsonPath = Path.Combine(_seedDataPath, "events.json");
@@ -187,7 +184,7 @@ namespace EventBudgetPlanner.Infrastructure.SeedData
                 _logger.LogInformation("Seeded {Count} events", events.Count);
             }
         }
-        /// <summary>Seeds expenses from expenses.json file using event indices.</summary>
+        // Seeds expenses from expenses.json file using event indices
         private async Task SeedExpensesAsync()
         {
             var jsonPath = Path.Combine(_seedDataPath, "expenses.json");
@@ -266,7 +263,7 @@ namespace EventBudgetPlanner.Infrastructure.SeedData
             }
         }
 
-        /// <summary>Seeds currencies from currencies.json file.</summary>
+        // Seeds currencies from currencies.json file
         private async Task SeedCurrenciesAsync()
         {
             var jsonPath = Path.Combine(_seedDataPath, "currencies.json");
@@ -318,7 +315,7 @@ namespace EventBudgetPlanner.Infrastructure.SeedData
             _logger.LogInformation("Seeded {Count} currencies", currencies.Count);
         }
 
-        /// <summary>Seeds event templates from eventTemplates.json file.</summary>
+        // Seeds event templates from eventTemplates.json file
         private async Task SeedEventTemplatesAsync()
         {
             var jsonPath = Path.Combine(_seedDataPath, "eventTemplates.json");

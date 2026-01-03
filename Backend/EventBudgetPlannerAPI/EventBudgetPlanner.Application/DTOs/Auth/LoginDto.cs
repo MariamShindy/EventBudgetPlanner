@@ -1,6 +1,6 @@
 namespace EventBudgetPlanner.Application.DTOs.Auth
 {
-    /// <summary>DTO for user login credentials</summary>
+    //DTO for user login credentials
     public record LoginDto(string Email, string Password);
 }
 

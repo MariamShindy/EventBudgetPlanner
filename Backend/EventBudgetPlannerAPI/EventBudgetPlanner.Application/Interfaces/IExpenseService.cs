@@ -1,9 +1,8 @@
-using EventBudgetPlanner.Application.Common;
 using EventBudgetPlanner.Application.DTOs.Expense;
 
 namespace EventBudgetPlanner.Application.Interfaces
 {
-    /// <summary>Service interface for expense management operations</summary>
+    //Service interface for expense management operations
     public interface IExpenseService
     {
         Task<Result<IEnumerable<ExpenseDto>>> GetExpensesByEventIdAsync(int eventId, bool? paid, string? category);

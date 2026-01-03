@@ -2,7 +2,7 @@ using EventBudgetPlanner.Application.DTOs.Event;
 
 namespace EventBudgetPlanner.Application.Interfaces
 {
-    /// <summary>Service interface for email operations</summary>
+    //Service interface for email operations
     public interface IEmailService
     {
         Task<Result> SendReminderEmailAsync(CreateReminderDto reminderDto);

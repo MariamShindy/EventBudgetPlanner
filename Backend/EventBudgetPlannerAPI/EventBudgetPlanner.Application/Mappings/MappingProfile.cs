@@ -3,7 +3,7 @@ using EventBudgetPlanner.Application.DTOs.Expense;
 
 namespace EventBudgetPlanner.Application.Mappings
 {
-    /// <summary>AutoMapper profile for entity-to-DTO mappings</summary>
+    //AutoMapper profile for entity-to-DTO mappings
     public class MappingProfile : Profile
     {
         public MappingProfile()

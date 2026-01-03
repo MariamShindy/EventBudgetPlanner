@@ -1,6 +1,6 @@
 namespace EventBudgetPlanner.Application.DTOs.Event
 {
-    /// <summary>DTO for updating an existing event</summary>
+    //DTO for updating an existing event
     public record UpdateEventDto(string Name, DateTime Date, decimal Budget, string? Description);
 }
 

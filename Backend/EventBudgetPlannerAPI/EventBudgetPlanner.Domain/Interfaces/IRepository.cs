@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace EventBudgetPlanner.Domain.Interfaces
 {
-    /// <summary>Generic repository interface for common data access operations</summary>
+    // Generic repository interface for common data access operations
     public interface IRepository<T> where T : BaseEntity
     {
         Task<T?> GetByIdAsync(int id);

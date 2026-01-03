@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EventBudgetPlanner.Infrastructure.Data.Configurations;
 
-/// <summary>Entity configuration for EventTemplateCategory</summary>
+// Entity configuration for EventTemplateCategory
 public class EventTemplateCategoryConfiguration : IEntityTypeConfiguration<EventTemplateCategory>
 {
     public void Configure(EntityTypeBuilder<EventTemplateCategory> builder)

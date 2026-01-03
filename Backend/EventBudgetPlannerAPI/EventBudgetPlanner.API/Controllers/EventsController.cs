@@ -1,28 +1,29 @@
 using EventBudgetPlanner.API.Extensions;
 using EventBudgetPlanner.Application.DTOs.Budget;
 using EventBudgetPlanner.Application.DTOs.Event;
+using EventBudgetPlanner.Application.DTOs.Expense;
 
 namespace EventBudgetPlanner.API.Controllers
 {
-    /// <summary>Events controller providing CRUD operations and budget summaries (requires authentication)</summary>
+    //Events controller providing CRUD operations and budget summaries
     [Authorize]
     public class EventsController (IEventService _eventService) : ApiController
     {
-        /// <summary>Retrieves all events</summary>
+        //Retrieves all events
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<EventDto>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<EventDto>>> GetAllEvents() =>
             (await _eventService.GetAllEventsAsync()).ToActionResult();
 
 
-        /// <summary>Retrieves a specific event by ID</summary>
+        //Retrieves a specific event by ID
         [HttpGet("{id:int}")]
         [ProducesResponseType(typeof(EventDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<EventDto>> GetEventById(int id) =>
             (await _eventService.GetEventByIdAsync(id)).ToActionResult();
 
-        /// <summary>Retrieves events with advanced filtering</summary>
+        //Retrieves events with advanced filtering
         [HttpPost("filter")]
         [ProducesResponseType(typeof(IEnumerable<EventDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -63,35 +64,35 @@ namespace EventBudgetPlanner.API.Controllers
             return Ok(pagedEvents);
         }
 
-        /// <summary>Creates a new event</summary>
+        //Creates a new event
         [HttpPost]
         [ProducesResponseType(typeof(EventDto), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<EventDto>> CreateEvent([FromBody] CreateEventDto createEventDto) =>
             (await _eventService.CreateEventAsync(createEventDto)).ToActionResult();
 
-        /// <summary>Updates an existing event</summary>
+        //Updates an existing event
         [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateEvent(int id, [FromBody] UpdateEventDto updateEventDto) =>
             (await _eventService.UpdateEventAsync(id, updateEventDto)).ToActionResult();
 
-        /// <summary>Deletes an event and all its associated expenses</summary>
+        //Deletes an event and all its associated expenses
         [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteEvent(int id) =>
             (await _eventService.DeleteEventAsync(id)).ToActionResult();
 
-        /// <summary>Retrieves comprehensive summary for an event including budget analysis</summary>
+        //Retrieves comprehensive summary for an event including budget analysis
         [HttpGet("{id:int}/summary")]
         [ProducesResponseType(typeof(EventSummaryDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<EventSummaryDto>> GetEventSummary(int id) =>
             (await _eventService.GetEventSummaryAsync(id)).ToActionResult();
 
-        /// <summary>Returns cashflow timeseries for an event at the specified interval (week or month)</summary>
+        //Returns cashflow timeseries for an event at the specified interval (week or month)
         [HttpGet("{id:int}/cashflow")]
         [ProducesResponseType(typeof(CashflowResponseDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -99,7 +100,7 @@ namespace EventBudgetPlanner.API.Controllers
         public async Task<ActionResult<CashflowResponseDto>> GetCashflow(int id, [FromQuery] string interval = "month") =>
             (await _eventService.GetCashflowAsync(id, interval)).ToActionResult();
 
-        /// <summary>Allocates event budget into categories using a strategy and persists planned amounts</summary>
+        //Allocates event budget into categories using a strategy and persists planned amounts
         [HttpPost("{id:int}/budget/allocate")]
         [ProducesResponseType(typeof(AllocationResponseDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -107,14 +108,14 @@ namespace EventBudgetPlanner.API.Controllers
         public async Task<ActionResult<AllocationResponseDto>> AllocateBudget(int id, [FromBody] AllocateBudgetRequestDto request) =>
             (await _eventService.AllocateBudgetAsync(id, request)).ToActionResult();
 
-        /// <summary>Generates a shareable link for an event</summary>
+        //Generates a shareable link for an event
         [HttpPost("{id:int}/share")]
         [ProducesResponseType(typeof(ShareEventDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ShareEventDto>> GenerateShareLink(int id) =>
             (await _eventService.GenerateShareLinkAsync(id)).ToActionResult();
 
-        /// <summary>Retrieves template events that users can copy</summary>
+        //Retrieves template events that users can copy
         [HttpGet("templates")]
         [ProducesResponseType(typeof(IEnumerable<EventDto>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<EventDto>>> GetTemplateEvents() =>

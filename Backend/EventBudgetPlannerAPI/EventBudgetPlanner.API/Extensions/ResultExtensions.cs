@@ -2,7 +2,7 @@ using EventBudgetPlanner.Application.Common;
 
 namespace EventBudgetPlanner.API.Extensions
 {
-    /// <summary>Extension methods for converting Result objects to ActionResult responses</summary>
+    //Extension methods for converting Result objects to ActionResult responses
     public static class ResultExtensions
     {
         public static ActionResult<T> ToActionResult<T>(this Result<T> result)

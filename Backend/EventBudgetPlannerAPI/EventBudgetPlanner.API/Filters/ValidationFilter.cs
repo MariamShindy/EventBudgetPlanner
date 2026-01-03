@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace EventBudgetPlanner.API.Filters
 {
-    /// <summary>Action filter for automatic FluentValidation before controller execution</summary>
+    //Action filter for automatic FluentValidation before controller execution
     public class ValidationFilter(IServiceProvider _serviceProvider) : IAsyncActionFilter
     {
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)

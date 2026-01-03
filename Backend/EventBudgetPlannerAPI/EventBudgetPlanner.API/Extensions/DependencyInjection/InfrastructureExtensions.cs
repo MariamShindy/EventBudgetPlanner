@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EventBudgetPlanner.API.Extensions.DependencyInjection
 {
-    /// <summary>Infrastructure layer services registration extension methods</summary>
+    //Infrastructure layer services registration extension methods
     public static class InfrastructureExtensions
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)

@@ -1,6 +1,6 @@
 namespace EventBudgetPlanner.Application.DTOs.Auth
 {
-    /// <summary>DTO for updating user information</summary>
+    //DTO for updating user information
     public record UpdateUserDto(string? FullName, string? Email);
 }
 

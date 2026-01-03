@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EventBudgetPlanner.API.Extensions.WebApplicaiton
 {
-    /// <summary>Extension methods for WebApplication configuration and middleware</summary>
+    //Extension methods for WebApplication configuration and middleware
     public static class WebAppExtensions
     {
         public static WebApplication AddAppMiddlewares(this WebApplication app)
@@ -49,9 +49,7 @@ namespace EventBudgetPlanner.API.Extensions.WebApplicaiton
             return app;
         }
 
-        /// <summary>
-        /// Applies database migrations and seeds initial data from JSON files on first run.
-        /// </summary>
+        // Applies database migrations and seeds initial data from JSON files on first run.
         public static async Task MigrateDatabaseAsync(this WebApplication app)
         {
             using var scope = app.Services.CreateScope();

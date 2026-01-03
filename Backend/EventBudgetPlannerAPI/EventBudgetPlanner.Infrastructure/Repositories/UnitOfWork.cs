@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace EventBudgetPlanner.Infrastructure.Repositories
 {
-    /// <summary>Unit of Work implementation with lazy-loaded repositories for single instantiation per request</summary>
+    // Unit of Work implementation with lazy-loaded repositories for single instantiation per request
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;

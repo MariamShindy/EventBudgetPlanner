@@ -1,6 +1,6 @@
 namespace EventBudgetPlanner.Application.DTOs.Expense
 {
-    /// <summary>DTO for creating a new expense</summary>
+    //DTO for creating a new expense
     public record CreateExpenseDto(
         int EventId, 
         string Category, 

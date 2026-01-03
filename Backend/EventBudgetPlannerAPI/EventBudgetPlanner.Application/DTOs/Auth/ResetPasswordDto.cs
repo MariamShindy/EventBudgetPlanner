@@ -1,6 +1,6 @@
 namespace EventBudgetPlanner.Application.DTOs.Auth
 {
-    /// <summary>DTO for reset password request</summary>
+    //DTO for reset password request
     public record ResetPasswordDto(string Email, string Token, string NewPassword, string ConfirmPassword);
 }
 

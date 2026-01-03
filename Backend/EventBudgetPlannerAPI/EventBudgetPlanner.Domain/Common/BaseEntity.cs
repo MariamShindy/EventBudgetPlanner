@@ -1,6 +1,6 @@
 namespace EventBudgetPlanner.Domain.Common
 {
-    /// <summary>Base class for all entities with common properties (Id, audit fields)</summary>
+    // Base class for all entities with common properties
     public abstract class BaseEntity
     {
         public int Id { get; set; }

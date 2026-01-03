@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace EventBudgetPlanner.API.Middleware
 {
-    /// <summary>Global exception handling middleware for standardized error responses</summary>
+    //Global exception handling middleware for standardized error responses
     public class ExceptionHandlingMiddleware(RequestDelegate _next , ILogger<ExceptionHandlingMiddleware> _logger)
     {
         public async Task InvokeAsync(HttpContext context)
@@ -62,7 +62,7 @@ namespace EventBudgetPlanner.API.Middleware
         }
     }
 
-    /// <summary>Extension methods for ExceptionHandlingMiddleware registration</summary>
+    //Extension methods for ExceptionHandlingMiddleware registration
     public static class ExceptionHandlingMiddlewareExtensions
     {
         public static IApplicationBuilder UseExceptionHandling(this IApplicationBuilder app) => app.UseMiddleware<ExceptionHandlingMiddleware>();

@@ -1,6 +1,6 @@
 ﻿namespace EventBudgetPlanner.API.Controllers
 {
-    /// <summary>Base API controller with common configuration for all controllers</summary>
+    //>Base API controller with common configuration for all controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]

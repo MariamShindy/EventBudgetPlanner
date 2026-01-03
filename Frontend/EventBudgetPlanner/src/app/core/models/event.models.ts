@@ -89,10 +89,6 @@ export interface SharedEventView {
   expenseCount: number;
 }
 
-export interface TemplateEvent extends Event {
-  isTemplate: boolean;
-}
-
 export interface AllocationItem {
   category: string;
   plannedAmount: number;

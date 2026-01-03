@@ -2,7 +2,7 @@ using EventBudgetPlanner.Domain.Common;
 
 namespace EventBudgetPlanner.Domain.Entities
 {
-    /// <summary>Event entity representing a budget-tracked event with associated expenses</summary>
+    // Event entity representing a budget-tracked event with associated expenses
     public class Event : BaseEntity
     {
         public string Name { get; set; } = string.Empty;
@@ -13,7 +13,7 @@ namespace EventBudgetPlanner.Domain.Entities
         public int? EventTemplateId { get; set; }
         public EventTemplate? EventTemplate { get; set; }
         public string? ShareToken { get; set; } // Unique token for sharing events
-        public bool IsTemplate { get; set; } = false; // Indicates if this is a template event
+        public bool IsTemplate { get; set; } = false; 
         public virtual ICollection<Expense> Expenses { get; set; } = new List<Expense>();
     }
 }

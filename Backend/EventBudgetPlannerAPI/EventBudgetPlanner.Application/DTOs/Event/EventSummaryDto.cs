@@ -1,6 +1,6 @@
 namespace EventBudgetPlanner.Application.DTOs.Event
 {
-    /// <summary>Event summary DTO with budget tracking and expense analysis</summary>
+    //Event summary DTO with budget tracking and expense analysis
     public record EventSummaryDto(
         int EventId, 
         string EventName, 

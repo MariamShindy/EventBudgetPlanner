@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace EventBudgetPlanner.API.Middleware
 {
-    /// <summary>Validation middleware for handling FluentValidation exceptions</summary>
+    //Validation middleware for handling FluentValidation exceptions
     public class ValidationMiddleware(RequestDelegate _next , ILogger<ValidationMiddleware> _logger)
     {
         public async Task InvokeAsync(HttpContext context)
@@ -44,7 +44,7 @@ namespace EventBudgetPlanner.API.Middleware
         }
     }
 
-    /// <summary>Extension methods for ValidationMiddleware registration</summary>
+    //Extension methods for ValidationMiddleware registration
     public static class ValidationMiddlewareExtensions
     {
         public static IApplicationBuilder UseValidation(this IApplicationBuilder app) => app.UseMiddleware<ValidationMiddleware>();

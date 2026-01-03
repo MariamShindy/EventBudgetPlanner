@@ -217,9 +217,9 @@ Icon
 # Documentation Files
 # ===========================================
 
-# Markdown files
+# Markdown files (but keep README.md)
 *.md
-README.md
+!README.md
 
 # ===========================================
 # Miscellaneous

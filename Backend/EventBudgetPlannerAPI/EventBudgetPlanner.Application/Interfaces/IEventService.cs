@@ -1,10 +1,9 @@
 using EventBudgetPlanner.Application.DTOs.Budget;
-using EventBudgetPlanner.Application.Common;
 using EventBudgetPlanner.Application.DTOs.Event;
 
 namespace EventBudgetPlanner.Application.Interfaces
 {
-    /// <summary>Service interface for event management operations</summary>
+    //Service interface for event management operations
     public interface IEventService
     {
         Task<Result<IEnumerable<EventDto>>> GetAllEventsAsync();

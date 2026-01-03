@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace EventBudgetPlanner.Infrastructure.SeedData.Models;
 
-/// <summary>Currency seed data model</summary>
+// Currency seed data model
 public class CurrencySeedData
 {
     [JsonPropertyName("code")]

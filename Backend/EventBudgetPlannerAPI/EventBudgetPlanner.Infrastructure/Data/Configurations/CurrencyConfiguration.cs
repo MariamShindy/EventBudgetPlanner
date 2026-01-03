@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EventBudgetPlanner.Infrastructure.Data.Configurations;
 
-/// <summary>Entity configuration for Currency</summary>
+// Entity configuration for Currency
 public class CurrencyConfiguration : IEntityTypeConfiguration<Currency>
 {
     public void Configure(EntityTypeBuilder<Currency> builder)

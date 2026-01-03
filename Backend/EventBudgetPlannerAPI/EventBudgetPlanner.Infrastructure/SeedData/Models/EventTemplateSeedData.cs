@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace EventBudgetPlanner.Infrastructure.SeedData.Models;
 
-/// <summary>Event template seed data model</summary>
+// Event template seed data model
 public class EventTemplateSeedData
 {
     [JsonPropertyName("name")]

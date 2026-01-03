@@ -1,10 +1,7 @@
 namespace EventBudgetPlanner.Application.DTOs.Event
 {
-    /// <summary>DTO for creating an email reminder</summary>
+    //DTO for creating an email reminder
     public record CreateReminderDto(int EventId, string Email, int DaysBeforeEvent, string? CustomMessage);
-
-    /// <summary>DTO for reminder response</summary>
-    public record ReminderDto(int Id, int EventId, string Email, int DaysBeforeEvent, DateTime ReminderDate, bool IsSent);
 }
 
 

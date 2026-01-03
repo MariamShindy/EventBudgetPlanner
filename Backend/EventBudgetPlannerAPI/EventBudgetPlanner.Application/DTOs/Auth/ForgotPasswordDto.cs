@@ -1,6 +1,6 @@
 namespace EventBudgetPlanner.Application.DTOs.Auth
 {
-    /// <summary>DTO for forgot password request</summary>
+    //DTO for forgot password request
     public record ForgotPasswordDto(string Email);
 }
 

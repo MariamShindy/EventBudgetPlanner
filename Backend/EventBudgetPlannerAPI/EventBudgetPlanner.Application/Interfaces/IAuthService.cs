@@ -1,6 +1,6 @@
 namespace EventBudgetPlanner.Application.Interfaces
 {
-    /// <summary>Service interface for authentication and JWT token management</summary>
+    //Service interface for authentication and JWT token management
     public interface IAuthService
     {
         Task<Result<AuthResponseDto>> RegisterAsync(RegisterDto registerDto);

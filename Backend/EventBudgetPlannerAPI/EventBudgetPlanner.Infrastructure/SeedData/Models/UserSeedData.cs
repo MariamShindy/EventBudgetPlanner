@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace EventBudgetPlanner.Infrastructure.SeedData.Models
 {
-    /// <summary>Model for user seed data from JSON</summary>
+    // Model for user seed data from JSON
     public class UserSeedData
     {
         [JsonPropertyName("fullName")]

@@ -2,7 +2,7 @@ using EventBudgetPlanner.Infrastructure.Data.Configurations;
 
 namespace EventBudgetPlanner.Infrastructure.Data
 {
-    /// <summary>Database context for Event Budget Planner with Identity support</summary>
+    // Database context for Event Budget Planner with Identity suppor
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }

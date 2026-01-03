@@ -1,8 +1,3 @@
-// ============================================================================
-// GLOBAL USINGS - Application Layer
-// Common namespaces used throughout the Application layer
-// ============================================================================
-
 global using System;
 global using System.Collections.Generic;
 global using System.Linq;

@@ -2,7 +2,7 @@ using EventBudgetPlanner.Domain.Common;
 
 namespace EventBudgetPlanner.Domain.Entities;
 
-/// <summary>Planned budget allocation for a specific category within an event.</summary>
+// Planned budget allocation for a specific category within an event
 public class EventCategoryBudget : BaseEntity
 {
     public int EventId { get; set; }

@@ -1,7 +1,4 @@
-using EventBudgetPlanner.Application.Common;
 using EventBudgetPlanner.Application.DTOs.Expense;
-using EventBudgetPlanner.Domain.Entities;
-using EventBudgetPlanner.Domain.Interfaces;
 
 namespace EventBudgetPlanner.Application.Services
 {
@@ -14,10 +11,8 @@ namespace EventBudgetPlanner.Application.Services
     public class ExpenseService(IUnitOfWork _unitOfWork, IMapper _mapper) : IExpenseService
     {
 
-        /// <summary>
-        /// Retrieves expenses for an event with optional filtering by payment status and category.
-        /// Returns NotFound result if event doesn't exist.
-        /// </summary>
+        // Retrieves expenses for an event with optional filtering by payment status and category.
+        // Returns NotFound result if event doesn't exist.
         public async Task<Result<IEnumerable<ExpenseDto>>> GetExpensesByEventIdAsync(int eventId, bool? paid, string? category)
         {
             var eventExists = await _unitOfWork.Events.AnyAsync(e => e.Id == eventId);
@@ -29,10 +24,8 @@ namespace EventBudgetPlanner.Application.Services
         }
 
 
-        /// <summary>
-        /// Retrieves a specific expense by ID.
-        /// Returns NotFound result if expense doesn't exist.
-        /// </summary>
+        // Retrieves a specific expense by ID.
+        // Returns NotFound result if expense doesn't exist.
         public async Task<Result<ExpenseDto>> GetExpenseByIdAsync(int id)
         {
             var expense = await _unitOfWork.Expenses.GetByIdAsync(id);
@@ -43,11 +36,9 @@ namespace EventBudgetPlanner.Application.Services
             return Result<ExpenseDto>.Success(expenseDto);
         }
 
-        /// <summary>
-        /// Creates a new expense in the database.
-        /// Validates that the event exists before creating.
-        /// Returns 201 Created status on success.
-        /// </summary>
+        // Creates a new expense in the database.
+        // Validates that the event exists before creating.
+        // Returns 201 Created status on success.
         public async Task<Result<ExpenseDto>> CreateExpenseAsync(CreateExpenseDto createExpenseDto)
         {
             var eventExists = await _unitOfWork.Events.AnyAsync(e => e.Id == createExpenseDto.EventId);
@@ -61,11 +52,9 @@ namespace EventBudgetPlanner.Application.Services
             return Result<ExpenseDto>.Success(expenseDto, 201);
         }
 
-        /// <summary>
-        /// Updates an existing expense.
-        /// Returns NotFound result if expense doesn't exist.
-        /// Returns NoContent (204) on success.
-        /// </summary>
+        // Updates an existing expense.
+        // Returns NotFound result if expense doesn't exist.
+        // Returns NoContent (204) on success.
         public async Task<Result> UpdateExpenseAsync(int id, UpdateExpenseDto updateExpenseDto)
         {
             var existingExpense = await _unitOfWork.Expenses.GetByIdAsync(id);
@@ -78,11 +67,9 @@ namespace EventBudgetPlanner.Application.Services
             return Result.Success(204);
         }
 
-        /// <summary>
-        /// Deletes an expense from the database.
-        /// Returns NotFound result if expense doesn't exist.
-        /// Returns NoContent (204) on success.
-        /// </summary>
+        // Deletes an expense from the database.
+        // Returns NotFound result if expense doesn't exist.
+        // Returns NoContent (204) on success.
         public async Task<Result> DeleteExpenseAsync(int id)
         {
             var expense = await _unitOfWork.Expenses.GetByIdAsync(id);
@@ -96,19 +83,15 @@ namespace EventBudgetPlanner.Application.Services
 
         #region Private Helper Methods
 
-        /// <summary>
-        /// Maps update DTO values to the existing expense entity.
-        /// </summary>
+        // Maps update DTO values to the existing expense entity.
         private void MapUpdatesToExpense(Expense existingExpense, UpdateExpenseDto updateDto)
         {
             _mapper.Map(updateDto, existingExpense);
             existingExpense.ModifiedDate = DateTime.Now;
         }
 
-        /// <summary>
-        /// Retrieves expenses with optional filters for payment status and category.
-        /// Applies filters dynamically based on provided parameters.
-        /// </summary>
+        // Retrieves expenses with optional filters for payment status and category.
+        // Applies filters dynamically based on provided parameters.
         private async Task<IEnumerable<ExpenseDto>> GetFilteredExpensesAsync(int eventId, bool? paid, string? category)
         {
             var expenses = await _unitOfWork.Expenses.FindAsync(e => e.EventId == eventId);
@@ -116,9 +99,7 @@ namespace EventBudgetPlanner.Application.Services
             return filteredExpenses.Select(e => _mapper.Map<ExpenseDto>(e));
         }
 
-        /// <summary>
-        /// Applies payment status and category filters to expense list.
-        /// </summary>
+        // Applies payment status and category filters to expense list.
         private static IEnumerable<Expense> ApplyFilters(IEnumerable<Expense> expenses, bool? paid, string? category)
         {
             if (paid.HasValue)
