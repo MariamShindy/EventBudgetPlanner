@@ -5,29 +5,14 @@
         <span class="logo-text">EventLedger</span>
       </a>
     </div>
-
     <div class="navbar-menu" *ngIf="isAuthenticated">
-      <!-- <div class="navbar-links">
-        <a routerLink="/events" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">
-          Events
-        </a>
-      </div> -->
-
       <div class="navbar-user">
-  <!-- <div class="user-avatar" (click)="goToProfile()">
-    {{ user?.fullName?.charAt(0) || 'U' }}
-  </div> -->
         <div class="user-info">
           <span class="user-name">{{ user?.fullName || 'User' }}</span>
           <span class="user-email">{{ user?.email }}</span>
         </div>
-
         <div class="navbar-actions">
           <button class="icon-button" (click)="goToProfile()" title="Profile">
-            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg> -->
               <div class="user-avatar" (click)="goToProfile()">
     {{ user?.fullName?.charAt(0) || 'U' }}
   </div>
